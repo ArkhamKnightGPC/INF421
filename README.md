@@ -12,7 +12,7 @@ Our goal is to compute $$x^* = \mathrm{arg opt}_{x \in \{0, 1\}^n} f(x)$$ using 
 
 The project was implemented using the [Nim programming language](https://nim-lang.org/). In Linux, install using $$\texttt{sudo apt install nim}$$
 
-then to compile and run Nim code, use the instruction $$\texttt{nim compile --run code.nim}$$
+A script is provided for compiling and running the unit tests.
 
 ## Useful resources
 

@@ -6,7 +6,7 @@ type
         size*: int
         bits*: seq[int]
 
-proc newIndividual(size: int): Individual =
+proc newIndividual*(size: int): Individual =
     #[ constructor for new Individual ]#
 
     #number of integers necessary to represent all xi's
@@ -49,7 +49,7 @@ proc flip*(individual: Individual, idx: int): void =
 proc count*(individual: Individual): int =
     #[ count number of bits equal to 1 ]#
     result = 0
-    for i in countup(1, individual.size):
+    for i in countup(0, individual.size - 1):
         let bitI = get(individual, i)
         result += bitI
     return result
