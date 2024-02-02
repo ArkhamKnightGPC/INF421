@@ -74,6 +74,3 @@ def PlotLeadingOnesRunTime():
     #save plot in a png
     plt.savefig('../plots/LeadingOnesRunTime.png')
     return
-
-#PlotOneMaxRunTime()
-PlotLeadingOnesRunTime()
