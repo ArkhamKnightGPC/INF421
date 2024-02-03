@@ -1,5 +1,7 @@
+import numpy as np
 from math import comb
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
 
 def calculate_coefficients(n, p):
     P = [[[0.0] * (n + 1) for _ in range(n + 1)] for _ in range(n + 1)]
@@ -41,3 +43,19 @@ plt.ylabel('Sum')
 plt.title('Sum of 1 / p_i vs. n')
 plt.grid(True)
 plt.savefig('../plots/OneMaxTheoreticalRunTime.png')
+
+#function for fitting
+def fit_function(y, a):
+    return a * y * np.log(y)
+
+# Perform curve fitting
+popt, pcov = curve_fit(fit_function, n_values, sum_values, maxfev=10000) # maxfev increased for more iterations
+
+# Plot the data and fitted curve
+plt.scatter(n_values, sum_values, label='Run time estimate')
+plt.plot(n_values, fit_function(np.array(n_values), *popt), 'r-', label='O(n log n) fitted curve')
+plt.xlabel('n')
+plt.ylabel('Run time')
+plt.legend()
+plt.grid(True)
+plt.savefig('../plots/OneMaxTheoreticalRunTimeFit.png')
