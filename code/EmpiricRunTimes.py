@@ -141,3 +141,7 @@ def PlotMuPlusOneEAOneMax():
     #save plot in a png
     plt.savefig('../plots/OneMaxRunTime2.png')
     return
+
+PlotOneMaxRunTime()
+PlotLeadingOnesRunTime()
+PlotMuPlusOneEAOneMax()
