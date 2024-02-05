@@ -40,21 +40,31 @@ def EvolutionaryAlgorithm2(f, n, mu):
     """
     t = 0
     Pt = []
+    most_fit_individual = (0, Individual(n)) #used to store solution
     
     for _ in range(mu):# we must create a random initial population of size mu
         individual = generateRandomOffspring(Individual(n), 0.5)
-        pair_fitness_individual = (f(individual), individual) #we create pair (fitness, individual)
+        fitness = f(individual)
+        pair_fitness_individual = (fitness, individual) #we create pair (fitness, individual)
+
+        if(fitness > most_fit_individual[0]):
+            most_fit_individual = pair_fitness_individual
+
         Pt.append(pair_fitness_individual)
 
     heapq.heapify(Pt) # we transform population into a priority queue
 
     while True:
 
-        most_fit_individual = max(Pt)
         if(most_fit_individual[1].count() == n):
             return most_fit_individual[1]
             
         offspring = generateRandomOffspring(random.choice(Pt)[1], 1 / n)
+        fitness = f(offspring)
+        pair_fitness_offspring = (fitness, offspring)
 
-        heapq.heappushpop(Pt, (f(offspring), offspring)) #we add offspring to the priority queue and pop least fit individual
+        if(fitness > most_fit_individual[0]):
+            most_fit_individual = pair_fitness_offspring
+
+        heapq.heappushpop(Pt, pair_fitness_offspring) #we add offspring to the priority queue and pop least fit individual
         t += 1

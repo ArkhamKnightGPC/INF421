@@ -2,7 +2,6 @@ import time
 import numpy as np
 from statistics import mean
 import matplotlib.pyplot as plt
-import Individual
 import GA_task5
 import BenchmarkFunctions
 
@@ -11,11 +10,11 @@ def PlotGeneticAlgorithmDiversities():
     Generates scatter plot for empirical run time analysis using (mu + lambda) GA and the Jumpk benchmark function
     """
     #we set parameter values for our tests
-    test_values = [(300, 4, 5, 1, 0), #base values
-            (300, 5, 5, 1, 0), (300, 6, 5, 1, 0), #testing influence of k
-            (300, 4, 10, 1, 0), (300, 4, 15, 1, 0), #testing influence of mu
-            (300, 4, 5, 5, 0), (300, 4, 5, 10, 0), #testing influence of lambda
-            (300, 4, 5, 1, 0.5), (300, 4, 5, 1, 1)] #testing influence of pc
+    test_values = [(30, 2, 10, 5, 0.4), #base values n=300, k=4, mu=10, lambda=5, pc=0
+            (300, 3, 10, 5, 0.4), (300, 4, 10, 5, 0.4), #testing influence of k
+            (300, 2, 20, 5, 0.4), (300, 2, 30, 5, 0.4), #testing influence of mu
+            (300, 2, 10, 7, 0.4), (300, 2, 10, 10, 0.4), #testing influence of lambda
+            (300, 2, 10, 5, 0.7), (300, 2, 10, 5, 1)] #testing influence of pc
 
     plot_number=1
 
@@ -25,8 +24,8 @@ def PlotGeneticAlgorithmDiversities():
 
         # we make a scatter plot
         plt.figure()
-        plt.scatter(range(1, len(diversities)+1), diversities, color='blue', marker='o', label='Diversity evolution')
-        plt.scatter(range(found_optimum, found_optimum+1), diversities[found_optimum], color='red', marker='o', label='Found optimum')    
+        plt.scatter(range(len(diversities)), diversities, color='blue', marker='o', label='Diversity evolution')
+        plt.scatter(found_optimum, diversities[found_optimum], color='red', marker='o', label=f'Optimum found at t={found_optimum}')
         plt.xlabel('t')
         plt.ylabel('diversity')
         plt.title(f'Test for n={n} k={k} mu={mu} lambda={lamb} pc={pc}')
@@ -34,5 +33,5 @@ def PlotGeneticAlgorithmDiversities():
         plt.legend()
 
         #save plot in a png
-        plt.savefig(f'../plots/GAplots6/GAtest{plot_number}.png')
+        plt.savefig(f'../plots/GAplots3/GAtest{plot_number}.png')
         plot_number+=1

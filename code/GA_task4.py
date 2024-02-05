@@ -9,19 +9,22 @@ def GeneticAlgorithm(f, n, k, mu, lamb, pc):
     """
     t = 0
     Pt = []
+    most_fit_individual = (0, Individual(n)) #used to store solution
     
     for _ in range(mu):# we must create a random initial population of size mu
         individual = generateRandomOffspring(Individual(n), 0.5)
-        pair_fitness_individual = (f(individual, k), individual) #we create pair (fitness, individual)
+        fitness = f(individual, k)
+        pair_fitness_individual = (fitness, individual) #we create pair (fitness, individual)
+        if(fitness > most_fit_individual[0]):
+            most_fit_individual = pair_fitness_individual
         Pt.append(pair_fitness_individual)
 
     heapq.heapify(Pt) # we transform population into a priority queue
 
     while True:
 
-        most_fit_individual = max(Pt)
         if(most_fit_individual[1].count() == n):
-            return most_fit_individual[1]
+            return most_fit_individual
         
         offspring = []
 
@@ -42,7 +45,14 @@ def GeneticAlgorithm(f, n, k, mu, lamb, pc):
 
         while(len(offspring) > 0):
             candidate_individual = offspring.pop(0)
+            fitness = f(candidate_individual, k)
+            candidate_pair = (fitness, candidate_individual)
+            
+            if(fitness > most_fit_individual[0]):
+                #we update most fit individual if necessary
+                most_fit_individual = candidate_pair
+
             #we add candidate_individual to the priority queue and pop least fit individual
-            heapq.heappushpop(Pt, (f(candidate_individual, k), candidate_individual))
+            heapq.heappushpop(Pt, candidate_pair)
 
         t += 1

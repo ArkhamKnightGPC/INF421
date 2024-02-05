@@ -38,6 +38,7 @@ def PlotOneMaxRunTime():
     popt, pcov = curve_fit(fit_function, nvals, run_times, maxfev=10000) # maxfev increased for more iterations
 
     # we make a scatter plot for run times
+    plt.figure()
     plt.scatter(nvals, run_times, color='blue', marker='o', label='Empirical run time')
     plt.plot(nvals, fit_function(np.array(nvals), *popt), 'r-', label='O(n log n) fitted curve')
     plt.xlabel('Problem Size (n)')
@@ -82,6 +83,7 @@ def PlotLeadingOnesRunTime():
     popt, pcov = curve_fit(fit_function, nvals, run_times, maxfev=10000) # maxfev increased for more iterations
 
     # we make a scatter plot for run times
+    plt.figure()
     plt.scatter(nvals, run_times, color='blue', marker='o', label='Empirical run time')
     plt.plot(nvals, fit_function(np.array(nvals), *popt), 'r-', label='O(n^2) fitted curve')
     plt.xlabel('Problem Size (n)')
@@ -127,6 +129,7 @@ def PlotMuPlusOneEAOneMax():
     popt, pcov = curve_fit(fit_function, mu_vals, run_times, maxfev=10000) # maxfev increased for more iterations
 
     # we make a scatter plot
+    plt.figure()
     plt.scatter(mu_vals, run_times, color='blue', marker='o', label='Empirical run time')
     plt.plot(mu_vals, fit_function(np.array(mu_vals), *popt), 'r-', label='O(sqrt n) fitted curve')
     plt.xlabel('mu')

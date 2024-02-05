@@ -52,6 +52,7 @@ def fit_function(y, a):
 popt, pcov = curve_fit(fit_function, n_values, sum_values, maxfev=10000) # maxfev increased for more iterations
 
 # Plot the data and fitted curve
+plt.figure()
 plt.scatter(n_values, sum_values, label='Run time estimate')
 plt.plot(n_values, fit_function(np.array(n_values), *popt), 'r-', label='O(n log n) fitted curve')
 plt.xlabel('n')
