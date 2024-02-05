@@ -37,6 +37,7 @@ for n in n_values:
     sum_values.append(sum_val)
 
 # Plot the sum as a function of n
+plt.figure()
 plt.plot(n_values, sum_values)
 plt.xlabel('n')
 plt.ylabel('Sum')
