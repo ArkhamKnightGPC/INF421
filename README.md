@@ -8,9 +8,35 @@ In this project we consider the **pseudo-boolean optimization problem**. Let $n 
 
 Our goal is to compute $$x^* = \mathrm{arg opt}_{x \in \\{0, 1 \\}^n} f(x)$$ using the $(\mu + \lambda)$ evolutionary strategy for classical benchmark functions ***OneMax***, ***LeadingOnes*** and ***Jumpk***. For further details, please check the [project report](report.pdf).
 
-## Requirements
+## Requirements and how to run locally
 
 The project was implemented using the [Python programming language](https://www.python.org/). A **requirements.txt** file with all project dependencies is provided.
+
+All the code can be found in the \texttt{code} folder in the repository.
+
+```
+    cd code
+```
+
+Now, to generate the scatter plots for the empiric runtime analysis of the ***OneMax*** and ***LeadingOnes*** benchmark functions (as described in task 2) we run the **EmpiricRunTimes.py** file. The generated plots are saved in the **plots** folder.
+
+```
+    python EmpiricRunTimes.py
+```
+
+Similarly to generate the plot for the theoretical bound of the ***OneMax*** benchmark function, we run the **dpOneMaxTheoreticalBound.py** file. The generated plot is saved in the **plots** folder.
+
+```
+    python dpOneMaxTheoreticalBound.py
+```
+
+Finally, to generate a series of plots for the empirical diversity tests of the ***Jumpk*** benchmark function using the $(\mu + \lambda)$ GA, we run the **GAtests.py** file. The generated plots are saved in a folder inside the **plots** folder.
+
+```
+    python GAtests.py
+```
+
+Unit tests are also provided in the **unit_tests** folder.
 
 ## Useful resources
 

@@ -1,7 +1,6 @@
 import random
 import heapq
 import numpy as np
-from itertools import combinations
 from Individual import Individual
 from EA import generateRandomOffspring
 
