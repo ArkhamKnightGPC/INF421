@@ -12,7 +12,7 @@ Our goal is to compute $$x^* = \mathrm{arg opt}_{x \in \\{0, 1 \\}^n} f(x)$$ usi
 
 The project was implemented using the [Python programming language](https://www.python.org/). A **requirements.txt** file with all project dependencies is provided.
 
-All the code can be found in the \texttt{code} folder in the repository.
+All the code can be found in the **code** folder in the repository.
 
 ```
     cd code
