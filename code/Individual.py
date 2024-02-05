@@ -11,6 +11,12 @@ class Individual:
         self.size = size
         self.bits = [0] * necessary_integers
 
+    def __lt__(self, other):
+        if(self.size < other.size):
+            return True
+        else:
+            return False
+
     def get(self, idx):
         """
         Get bit at index idx

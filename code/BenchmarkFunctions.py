@@ -14,7 +14,7 @@ def LeadingOnes(individual):
     result = 0
     for i in range(n):
         prefix_product = 1
-        for j in range(1, i + 1):
+        for j in range(0, i + 1):
             prefix_product *= individual.get(j)
         result += prefix_product
     return result

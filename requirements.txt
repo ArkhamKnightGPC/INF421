@@ -1,3 +1,5 @@
 matplotlib
 statistics
 numpy
+heapq
+itertools
