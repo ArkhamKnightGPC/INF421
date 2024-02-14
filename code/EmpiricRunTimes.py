@@ -101,7 +101,7 @@ def PlotMuPlusOneEAOneMax():
     Generates scatter plot for empirical run time analysis using (mu + 1) EA and the OneMax benchmark function
     """
     n = 30 #we keep n constant and vary only mu
-    mu_vals = range(1, 30)
+    mu_vals = range(1, 100)
     run_times = []
 
     for mu in mu_vals:
@@ -123,7 +123,7 @@ def PlotMuPlusOneEAOneMax():
 
     #function for fitting
     def fit_function(y, a):
-        return a * np.sqrt(y) #Theoretical analysis points to n log(n) complexity
+        return a * y
 
     # Perform curve fitting
     popt, pcov = curve_fit(fit_function, mu_vals, run_times, maxfev=10000) # maxfev increased for more iterations
@@ -131,7 +131,7 @@ def PlotMuPlusOneEAOneMax():
     # we make a scatter plot
     plt.figure()
     plt.scatter(mu_vals, run_times, color='blue', marker='o', label='Empirical run time')
-    plt.plot(mu_vals, fit_function(np.array(mu_vals), *popt), 'r-', label='O(sqrt n) fitted curve')
+    plt.plot(mu_vals, fit_function(np.array(mu_vals), *popt), 'r-', label='O(n) fitted curve')
     plt.xlabel('mu')
     plt.ylabel('Runtime (seconds)')
     plt.title('Runtime for OneMax')
