@@ -24,13 +24,7 @@ Now, to generate the scatter plots for the empiric runtime analysis of the ***On
     python EmpiricRunTimes.py
 ```
 
-Similarly to generate the plot for the theoretical bound of the ***OneMax*** benchmark function, we run the **dpOneMaxTheoreticalBound.py** file. The generated plot is saved in the **plots** folder.
-
-```
-    python dpOneMaxTheoreticalBound.py
-```
-
-Finally, to generate a series of plots for the empirical diversity tests of the ***Jumpk*** benchmark function using the $(\mu + \lambda)$ GA, we run the **GAtests.py** file. The generated plots are saved in a folder inside the **plots** folder.
+To generate a series of plots for the empirical diversity tests of the ***Jumpk*** benchmark function using the $(\mu + \lambda)$ GA, we run the **GAtests.py** file. The generated plots are saved in a folder inside the **plots** folder.
 
 ```
     python GAtests.py
