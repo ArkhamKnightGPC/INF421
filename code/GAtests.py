@@ -36,7 +36,7 @@ def PlotGeneticAlgorithmDiversities():
         plt.legend()
 
         #save plot in a png
-        plt.savefig(f'../plots/GAplots3/GAtest{plot_number}.png')
+        plt.savefig(f'../plots/GAplots1/GAtest{plot_number}.png')
         plot_number+=1
 
 PlotGeneticAlgorithmDiversities()

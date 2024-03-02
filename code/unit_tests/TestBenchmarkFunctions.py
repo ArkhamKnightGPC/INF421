@@ -8,7 +8,7 @@ from BenchmarkFunctions import OneMax, LeadingOnes, JumpK
 
 class TestBenchmarkFunctions(unittest.TestCase):
     def setUp(self):
-        self.test = Individual(64)
+        self.test = Individual(64, 0)
 
     def test_OneMax_1(self):
         for i in range(1, 11):

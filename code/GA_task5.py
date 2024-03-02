@@ -9,7 +9,7 @@ def GenerateOnPlateau(n, k):
     Creates individual with k ones. Positions are chosen uniformly at random
     """
     random_permutation = np.random.permutation(range(0, n)) #we pick first n-k numbers in a random permutation of [1..n]
-    individual = Individual(n)
+    individual = Individual(n, 0)
     for i in range(n-k):
         bit_idx = random_permutation[i]
         individual.set(bit_idx)
@@ -71,7 +71,7 @@ def GeneticAlgorithm2(f, n, k, mu, lamb, pc, max_iter = 50):
             if(branch_decider < pc): #we perform recombination with probability pc
                 individual1 = random.choice(Pt)[1]
                 individual2 = random.choice(Pt)[1]
-                new_individual = Individual(n)
+                new_individual = Individual(n, t+1)
                 for i in range(n):
                     #for each bit, we chose uniformly at random between bit value in individual1 and individual2
                     bit_value = random.choice([individual1.get(i), individual2.get(i)])

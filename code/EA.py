@@ -8,7 +8,7 @@ def generateRandomOffspring(x, p):
     Generate a copy of x flipping each bit independently with probability p
     """
     n = x.size
-    y = Individual(n)
+    y = Individual(n, x.t + 1) #IMPORTANT: increment time counter!
     for idx in range(n):
         xi = x.get(idx)
         rand_var = np.random.uniform(0, 1)
@@ -24,11 +24,11 @@ def EvolutionaryAlgorithm(f, n):
     (1+1) Evolutionary Algorithm
     """
     t = 0
-    Pt = generateRandomOffspring(Individual(n), 0.5)  # random initial solution
+    Pt = generateRandomOffspring(Individual(n, 0), 0.5)  # random initial solution (t=0)
 
     while Pt.count() < n:
         y = generateRandomOffspring(Pt, 1 / n)
-        if f(y) > f(Pt):  # we pick solution that maximizes f
+        if f(y) >= f(Pt):  # IMPORTANT: Pick solution that maximises f, in case of tie CHOOSE OFFSPRING!!!
             Pt = y
         t += 1
 
@@ -40,14 +40,14 @@ def EvolutionaryAlgorithm2(f, n, mu):
     """
     t = 0
     Pt = []
-    most_fit_individual = (0, Individual(n)) #used to store solution
+    most_fit_individual = (0, Individual(n, -1)) #used to store solution
     
     for _ in range(mu):# we must create a random initial population of size mu
-        individual = generateRandomOffspring(Individual(n), 0.5)
+        individual = generateRandomOffspring(Individual(n, 0), 0.5)
         fitness = f(individual)
         pair_fitness_individual = (fitness, individual) #we create pair (fitness, individual)
 
-        if(fitness > most_fit_individual[0]):
+        if(fitness >= most_fit_individual[0]):
             most_fit_individual = pair_fitness_individual
 
         Pt.append(pair_fitness_individual)
@@ -63,7 +63,7 @@ def EvolutionaryAlgorithm2(f, n, mu):
         fitness = f(offspring)
         pair_fitness_offspring = (fitness, offspring)
 
-        if(fitness > most_fit_individual[0]):
+        if(fitness >= most_fit_individual[0]):
             most_fit_individual = pair_fitness_offspring
 
         heapq.heappushpop(Pt, pair_fitness_offspring) #we add offspring to the priority queue and pop least fit individual

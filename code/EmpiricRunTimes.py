@@ -10,7 +10,7 @@ def PlotOneMaxRunTime():
     """
     Generates scatter plot for empirical run time analysis using (1+1) EA and the OneMax benchmark function
     """
-    nvals = range(1, 30)
+    nvals = range(1, 100)
     run_times = []
 
     for n in nvals:

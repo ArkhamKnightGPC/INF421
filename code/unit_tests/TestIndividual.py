@@ -8,13 +8,13 @@ from Individual import Individual
 class TestIndividual(unittest.TestCase):
 
     def test_flip_bit_in_first_block(self):
-        test = Individual(5)
+        test = Individual(5, 0)
         test.flip(3)
         t = test.get(3)
         self.assertEqual(t, 1)
 
     def test_flip_bit_in_middle_block(self):
-        test = Individual(50)
+        test = Individual(50, 0)
         test.flip(42)
         t1 = test.get(42)
         test.flip(42)
@@ -23,13 +23,13 @@ class TestIndividual(unittest.TestCase):
         self.assertEqual(t2, 0)
 
     def test_flip_bit_in_last_block(self):
-        test = Individual(100)
+        test = Individual(100, 0)
         test.flip(90)
         t = test.get(90)
         self.assertEqual(t, 1)
 
     def test_set_and_reset_several_bits(self):
-        test = Individual(120)
+        test = Individual(120, 0)
         test.set(3)
         test.set(41)
         test.set(94)
@@ -50,7 +50,7 @@ class TestIndividual(unittest.TestCase):
         self.assertEqual(t5, 1)
 
     def test_count_1(self):
-        test = Individual(155)
+        test = Individual(155, 0)
         test.set(3)
         test.set(41)
         test.set(94)
@@ -62,7 +62,7 @@ class TestIndividual(unittest.TestCase):
         self.assertEqual(t, 6)
 
     def test_count_2(self):
-        test = Individual(155)
+        test = Individual(155, 0)
         test.set(33)
         test.set(94)
         test.set(142)

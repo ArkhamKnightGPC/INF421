@@ -9,13 +9,13 @@ def GeneticAlgorithm(f, n, k, mu, lamb, pc):
     """
     t = 0
     Pt = []
-    most_fit_individual = (0, Individual(n)) #used to store solution
+    most_fit_individual = (0, Individual(n, -1)) #used to store solution
     
     for _ in range(mu):# we must create a random initial population of size mu
-        individual = generateRandomOffspring(Individual(n), 0.5)
+        individual = generateRandomOffspring(Individual(n, 0), 0.5)
         fitness = f(individual, k)
         pair_fitness_individual = (fitness, individual) #we create pair (fitness, individual)
-        if(fitness > most_fit_individual[0]):
+        if(fitness >= most_fit_individual[0]):
             most_fit_individual = pair_fitness_individual
         Pt.append(pair_fitness_individual)
 
@@ -34,7 +34,7 @@ def GeneticAlgorithm(f, n, k, mu, lamb, pc):
             if(branch_decider < pc): #we perform recombination with probability pc
                 individual1 = random.choice(Pt)[1]
                 individual2 = random.choice(Pt)[1]
-                new_individual = Individual(n)
+                new_individual = Individual(n, t+1)
                 for i in range(n):
                     #for each bit, we chose uniformly at random between bit value in individual1 and individual2
                     bit_value = random.choice([individual1.get(i), individual2.get(i)])
@@ -48,7 +48,7 @@ def GeneticAlgorithm(f, n, k, mu, lamb, pc):
             fitness = f(candidate_individual, k)
             candidate_pair = (fitness, candidate_individual)
             
-            if(fitness > most_fit_individual[0]):
+            if(fitness >= most_fit_individual[0]):
                 #we update most fit individual if necessary
                 most_fit_individual = candidate_pair
 

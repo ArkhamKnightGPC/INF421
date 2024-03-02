@@ -2,7 +2,7 @@ class Individual:
     """
     Represents candidate solutions x = (x1, ..., xn)
     """
-    def __init__(self, size):
+    def __init__(self, size, t):
         """
         Constructor for new Individual
         """
@@ -10,12 +10,10 @@ class Individual:
         necessary_integers = (size + 31) // 32
         self.size = size
         self.bits = [0] * necessary_integers
+        self.t = t #offspring iteration, important for breaking ties!!!
 
     def __lt__(self, other):
-        if(self.size < other.size):
-            return True
-        else:
-            return False
+        return self.t > other.t #IMPORTANT: Prefer the most recent offspring
 
     def get(self, idx):
         """
